@@ -23,7 +23,7 @@
     "langchain": "^1.5.2",
     "mongoose": "^9.7.2",
     "multer": "^2.2.0",
-    "pdf-parse": "^2.4.5",
+    "pdfjs-dist": "^6.1.200",
     "uuid": "^14.0.1"
   },
   "devDependencies": {

@@ -1,50 +1,34 @@
 import Document from "../models/Document.js";
 import fs from "fs";
-export const uploadDocuments =
-  async (req, res) => {
-    try {
-      const files = req.files;
+import { saveUploadedDocuments } from "../services/document.service.js";
 
-      const savedDocs = [];
+export const uploadDocuments = async (req, res) => {
+  try {
+    const files = req.files;
 
-      for (const file of files) {
-        const document =
-          await Document.create({
-            originalName:
-              file.originalname,
-
-            storedName:
-              file.filename,
-
-            filePath:
-              file.path,
-
-            fileType:
-              file.mimetype,
-
-            fileSize:
-              file.size,
-          });
-
-        savedDocs.push(document);
-      }
-
-      return res.status(201).json({
-        success: true,
-        message:
-          "Files uploaded successfully",
-
-        data: savedDocs,
-      });
-    } catch (error) {
-      console.log(error);
-
-      return res.status(500).json({
+    if (!files || files.length === 0) {
+      return res.status(400).json({
         success: false,
-        message: error.message,
+        message: "No files uploaded",
       });
     }
-  };
+
+    const documents = await saveUploadedDocuments(files);
+
+    return res.status(201).json({
+      success: true,
+      message: "Documents uploaded successfully",
+      data: documents,
+    });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 
 export const getDocuments =
   async (req, res) => {

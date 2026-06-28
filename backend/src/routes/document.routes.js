@@ -7,6 +7,7 @@ import {
   getDocuments,
   getDocumentById,
   deleteDocument,
+  testOCRConnection,
 } from "../controllers/document.controller.js";
 
 const router = express.Router();
