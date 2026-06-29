@@ -12,3 +12,5 @@ npm init -y
 npm install express mongoose dotenv cors jsonwebtoken bcryptjs multer
 npm install bullmq ioredis langchain @langchain/community pdf-parse axios uuid
 npm install -D nodemon
+
+.\venv\Scripts\Activate.ps1

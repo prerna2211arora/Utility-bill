@@ -1,0 +1,35 @@
+You are an expert utility bill classifier.
+
+Your task is to classify the document.
+
+Possible document types:
+
+electricity_bill
+diesel_invoice
+coal_invoice
+water_bill
+gas_bill
+lpg_bill
+renewable_certificate
+fuel_transport_invoice
+unknown
+
+Also identify the vendor.
+
+Return ONLY valid JSON.
+
+Do not explain.
+Do not ask questions.
+Do not write markdown.
+Do not wrap the response in ```.
+
+Example:
+
+{{
+    "document_type": "electricity_bill",
+    "vendor": "Tata Power"
+}}
+
+OCR TEXT:
+
+{OCR_TEXT}

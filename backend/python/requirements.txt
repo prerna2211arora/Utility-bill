@@ -5,3 +5,7 @@ paddleocr
 paddlepaddle
 pillow
 python-multipart
+langchain
+langchain-community
+
+ollama

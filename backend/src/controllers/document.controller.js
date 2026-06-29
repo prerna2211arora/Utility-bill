@@ -1,6 +1,6 @@
 import Document from "../models/Document.js";
 import fs from "fs";
-import { saveUploadedDocuments } from "../services/document.service.js";
+import { saveUploadedDocuments, processUploadedDocument } from "../services/document.service.js";
 
 export const uploadDocuments = async (req, res) => {
   try {
@@ -15,6 +15,9 @@ export const uploadDocuments = async (req, res) => {
 
     const documents = await saveUploadedDocuments(files);
 
+    for (const doc of documents) {
+      await processUploadedDocument(doc);
+    }
     return res.status(201).json({
       success: true,
       message: "Documents uploaded successfully",
@@ -30,24 +33,22 @@ export const uploadDocuments = async (req, res) => {
   }
 };
 
-export const getDocuments =
-  async (req, res) => {
-    try {
-      const docs =
-        await Document.find().sort({
-          createdAt: -1,
-        });
+export const getDocuments = async (req, res) => {
+  try {
+    const docs = await Document.find().sort({
+      createdAt: -1,
+    });
 
-      return res.json({
-        success: true,
-        data: docs,
-      });
-    } catch (error) {
-      return res.status(500).json({
-        success: false,
-      });
-    }
-  };
+    return res.json({
+      success: true,
+      data: docs,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+    });
+  }
+};
 
 export const getDocumentById = async (req, res) => {
   try {

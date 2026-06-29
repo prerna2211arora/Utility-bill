@@ -41,3 +41,10 @@ export const extractTextFromPdf = async (pdfPath) => {
     };
   }
 };
+export const hasEnoughText = (text) => {
+
+    if (!text)
+        return false;
+
+    return text.trim().length > 300;
+};

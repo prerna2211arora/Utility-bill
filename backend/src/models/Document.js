@@ -29,21 +29,34 @@ const documentSchema = new mongoose.Schema(
 
     status: {
       type: String,
-      enum: [
-        "uploaded",
-        "processing",
-        "completed",
-        "failed",
-      ],
+      enum: ["uploaded", "processing", "ocr_completed", "failed"],
       default: "uploaded",
     },
+    ocr: {
+    text: {
+        type: String,
+        default: "",
+    },
+
+    engine: {
+        type: String,
+        default: "",
+    },
+
+    confidence: {
+        type: Number,
+        default: 0,
+    },
+
+    pages: {
+        type: Number,
+        default: 0,
+    },
+},
   },
   {
     timestamps: true,
-  }
+  },
 );
 
-export default mongoose.model(
-  "Document",
-  documentSchema
-);
+export default mongoose.model("Document", documentSchema);

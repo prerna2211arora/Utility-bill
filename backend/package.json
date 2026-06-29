@@ -23,6 +23,8 @@
     "langchain": "^1.5.2",
     "mongoose": "^9.7.2",
     "multer": "^2.2.0",
+    "paddleocr": "^1.1.1",
+    "paddlepaddle": "^1.0.5",
     "pdfjs-dist": "^6.1.200",
     "uuid": "^14.0.1"
   },
